@@ -91,6 +91,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         xAxis.setTypeface(mTfLight);
         xAxis.setGranularity(1f);
         xAxis.setCenterAxisLabels(true);
+        xAxis.setGranularity(0);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {

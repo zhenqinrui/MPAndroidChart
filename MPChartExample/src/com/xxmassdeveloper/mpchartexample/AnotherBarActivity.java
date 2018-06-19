@@ -1,7 +1,9 @@
 
 package com.xxmassdeveloper.mpchartexample;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -11,11 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -55,6 +61,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
+        mChart.setScaleEnabled(false);
 
         mChart.setDrawBarShadow(false);
         mChart.setDrawGridBackground(false);
@@ -62,6 +69,12 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return "一年级\n三班";
+            }
+        });
         
         mChart.getAxisLeft().setDrawGridLines(false);
 
@@ -71,8 +84,16 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
         // add a nice and smooth animation
         mChart.animateY(2500);
-        
-        mChart.getLegend().setEnabled(false);
+
+        // 处理x坐标文字显示不全问题(重写了换行，还是没显示的问题),以下两种方式都可以试下，第一种方式好像和版本有关,第二种试了没问题
+        // 方案一（建议用该方式)，打开以下注释
+        Legend legend = mChart.getLegend();
+//        legend.setForm(Legend.LegendForm.NONE);
+//        legend.setTextColor(Color.TRANSPARENT);
+
+        // 方案二
+        legend.setEnabled(false);
+        mChart.setViewPortOffsets(0, 0, 0, 100);
     }
 
     @Override
@@ -156,7 +177,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
-        for (int i = 0; i < mSeekBarX.getProgress() + 1; i++) {
+        for (int i = 0; i < 6; i++) {
             float mult = (mSeekBarY.getProgress() + 1);
             float val = (float) (Math.random() * mult) + mult / 3;
             yVals1.add(new BarEntry(i, val));

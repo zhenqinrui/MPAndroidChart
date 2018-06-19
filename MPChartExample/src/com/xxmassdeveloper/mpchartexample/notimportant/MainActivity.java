@@ -47,6 +47,7 @@ import com.xxmassdeveloper.mpchartexample.StackedBarActivity;
 import com.xxmassdeveloper.mpchartexample.StackedBarActivityNegative;
 import com.xxmassdeveloper.mpchartexample.fragments.SimpleChartDemo;
 import com.xxmassdeveloper.mpchartexample.realm.RealmMainActivity;
+import com.xxmassdeveloper.mpchartexample.szytest.SzyTestBarActivity;
 
 import java.util.ArrayList;
 
@@ -170,7 +171,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
                 startActivity(i);
                 break;
             case 2:
-                i = new Intent(this, BarChartActivity.class);
+//                i = new Intent(this, BarChartActivity.class);
+                i = new Intent(this, SzyTestBarActivity.class);
                 startActivity(i);
                 break;
             case 3:
