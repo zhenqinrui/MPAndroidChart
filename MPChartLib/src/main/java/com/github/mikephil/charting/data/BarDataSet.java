@@ -35,6 +35,9 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
      */
     private int mEntryCountStacks = 0;
 
+    private float roundXRadius;
+    private float roundYRadius;
+
     /**
      * array of labels used to describe the different values of the stacked bars
      */
@@ -233,5 +236,21 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     @Override
     public String[] getStackLabels() {
         return mStackLabels;
+    }
+
+    @Override
+    public void setRoundRadius(float rx, float ry) {
+        roundXRadius = rx;
+        roundYRadius = ry;
+    }
+
+    @Override
+    public float getRoundXRadius() {
+        return roundXRadius;
+    }
+
+    @Override
+    public float getRoundYRadius() {
+        return roundYRadius;
     }
 }

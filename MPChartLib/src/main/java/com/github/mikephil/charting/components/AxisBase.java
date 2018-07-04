@@ -32,6 +32,8 @@ public abstract class AxisBase extends ComponentBase {
 
     private float mAxisLineWidth = 1f;
 
+    public boolean useCustomerEntry = false;
+
     /**
      * the actual array of entries
      */
@@ -196,6 +198,15 @@ public abstract class AxisBase extends ComponentBase {
      */
     public boolean isDrawAxisLineEnabled() {
         return mDrawAxisLine;
+    }
+
+    /**
+     * 是否使用自定义的条目坐标值, 处理x坐标显示数与条目数不一致问题
+     * @param useCustomerEntry
+     */
+    public void setUseCustomerEntry(boolean useCustomerEntry, float[] entry) {
+        this.useCustomerEntry = useCustomerEntry;
+        this.mEntries = entry;
     }
 
     /**

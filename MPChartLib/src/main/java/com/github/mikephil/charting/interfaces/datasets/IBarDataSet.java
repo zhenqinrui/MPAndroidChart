@@ -61,4 +61,23 @@ public interface IBarDataSet extends IBarLineScatterCandleBubbleDataSet<BarEntry
      * @return
      */
     String[] getStackLabels();
+
+    /**
+     * set round radis
+     * @param rx
+     * @param ry
+     */
+    void setRoundRadius(float rx, float ry);
+
+    /**
+     * x round radius
+     * @return
+     */
+    float getRoundXRadius();
+
+    /**
+     * y round radius
+     * @return
+     */
+    float getRoundYRadius();
 }

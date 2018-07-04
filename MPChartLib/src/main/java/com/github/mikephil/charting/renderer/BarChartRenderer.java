@@ -189,11 +189,14 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                         dataSet.getGradientColor(j / 4).getEndColor(),
                         android.graphics.Shader.TileMode.MIRROR));
             }
-
-
-            c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
-                    buffer.buffer[j + 3], mRenderPaint);
-
+            if  (dataSet.getRoundXRadius() != 0 && dataSet.getRoundYRadius() != 0) {
+                // zqr 2018-7-4日修改为支持圆角
+                RectF rectF=new RectF(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3]);
+                c.drawRoundRect(rectF, dataSet.getRoundXRadius(), dataSet.getRoundYRadius(), mRenderPaint);
+            } else {
+                c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
+                        buffer.buffer[j + 3], mRenderPaint);
+            }
             if (drawBorder) {
                 c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
                         buffer.buffer[j + 3], mBarBorderPaint);

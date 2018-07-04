@@ -229,19 +229,19 @@ public class XAxisRenderer extends AxisRenderer {
 
     protected void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
         float labelHeight = mXAxis.getTextSize();
-        float labelInterval = 25f;
+        float labelInterval = 10f;
         String[] labels = formattedLabel.split("\n");
 
         Paint mFirstLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mFirstLinePaint.setColor(Color.BLUE);
+        mFirstLinePaint.setColor(Color.parseColor("#818d9d"));
         mFirstLinePaint.setTextAlign(Align.CENTER);
-        mFirstLinePaint.setTextSize(Utils.convertDpToPixel(15f));
+        mFirstLinePaint.setTextSize(Utils.convertDpToPixel(11f));
         mFirstLinePaint.setTypeface(mXAxis.getTypeface());
 
         Paint mSecondLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mSecondLinePaint.setColor(0xFF9b9b9b);
+        mSecondLinePaint.setColor(Color.parseColor("#818d9d"));
         mSecondLinePaint.setTextAlign(Align.CENTER);
-        mSecondLinePaint.setTextSize(Utils.convertDpToPixel(10f));
+        mSecondLinePaint.setTextSize(Utils.convertDpToPixel(11f));
         mSecondLinePaint.setTypeface(mXAxis.getTypeface());
 
         if (labels.length > 1) {
