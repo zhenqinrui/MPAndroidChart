@@ -35,8 +35,11 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
      */
     private int mEntryCountStacks = 0;
 
-    private float roundXRadius;
-    private float roundYRadius;
+    private float roundLeftTopRadius;
+    private float roundRightTopRadius;
+    private float roundLeftBottomRadius;
+    private float roundRightBottomRadius;
+    private float roundRadius;
 
     /**
      * array of labels used to describe the different values of the stacked bars
@@ -239,18 +242,40 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     }
 
     @Override
-    public void setRoundRadius(float rx, float ry) {
-        roundXRadius = rx;
-        roundYRadius = ry;
+    public float getRoundLeftBottom() {
+        return roundLeftBottomRadius;
     }
 
     @Override
-    public float getRoundXRadius() {
-        return roundXRadius;
+    public float getRoundRightBottom() {
+        return roundRightBottomRadius;
     }
 
     @Override
-    public float getRoundYRadius() {
-        return roundYRadius;
+    public float getRoundLeftTop() {
+        return roundLeftTopRadius;
+    }
+
+    @Override
+    public float getRoundRightTop() {
+        return roundRightTopRadius;
+    }
+
+    @Override
+    public void setRoundRadius(float leftTop, float rightTop, float leftBottom, float rightBottom) {
+        roundLeftTopRadius = leftTop;
+        roundRightTopRadius = rightTop;
+        roundLeftBottomRadius = leftBottom;
+        roundRightBottomRadius = rightBottom;
+    }
+
+    @Override
+    public void setRoundRadius(float roundRadius) {
+        this.roundRadius = roundRadius;
+    }
+
+    @Override
+    public float getRoundRadius() {
+        return roundRadius;
     }
 }

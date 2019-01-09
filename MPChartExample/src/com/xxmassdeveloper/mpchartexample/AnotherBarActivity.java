@@ -75,7 +75,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
                 return "一年级\n三班";
             }
         });
-        
+
         mChart.getAxisLeft().setDrawGridLines(false);
 
         // setting data
@@ -188,6 +188,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         if (mChart.getData() != null &&
                 mChart.getData().getDataSetCount() > 0) {
             set1 = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            set1.setRoundRadius(9);
             set1.setValues(yVals1);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();

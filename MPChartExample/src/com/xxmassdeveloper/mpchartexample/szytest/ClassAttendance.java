@@ -24,6 +24,24 @@ public class ClassAttendance {
     }
 
     public String getClassName() {
+        if (className != null) {
+            String[] names = className.split("-");
+            if (names != null && names.length > 1) {
+                String s1 = names[0];
+                if (s1.length() > 4) {
+                    s1 = s1.substring(0, 4);
+                }
+                String s2 = names[1];
+                if (s2.length() > 4) {
+                    s2 = s2.substring(0, 4);
+                }
+                return s1 + "\n" + s2;
+            } else {
+                if (className.length() > 4) {
+                    return className.substring(0, 4);
+                }
+            }
+        }
         return className;
     }
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
@@ -64,16 +65,18 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
         mChart.setCenterTextTypeface(mTfLight);
+        mChart.setCenterTextSize(12);
         mChart.setCenterText(generateCenterSpannableText());
-
+        mChart.setCenterTextColor(Color.parseColor("#ffaabb"));
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleColor(Color.WHITE);
 
-        mChart.setTransparentCircleColor(Color.WHITE);
-        mChart.setTransparentCircleAlpha(110);
+//        mChart.setTransparentCircleColor(Color.WHITE);
+//        mChart.setTransparentCircleAlpha(110);
 
-        mChart.setHoleRadius(58f);
-        mChart.setTransparentCircleRadius(61f);
+        mChart.setHoleRadius(90f);
+        mChart.setTransparentCircleRadius(0);
+//        mChart.setTransparentCircleRadius(61f);
 
         mChart.setDrawCenterText(true);
 
@@ -255,16 +258,12 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     private SpannableString generateCenterSpannableText() {
-
-        SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        String rate = "145%";
+        SpannableString s = new SpannableString(rate + "\n激活率fa");
+        s.setSpan(new AbsoluteSizeSpan(40), 0, rate.length(), 0);
         return s;
     }
+
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {

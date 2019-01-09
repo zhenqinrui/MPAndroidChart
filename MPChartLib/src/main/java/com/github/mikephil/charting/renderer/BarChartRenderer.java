@@ -189,14 +189,24 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                         dataSet.getGradientColor(j / 4).getEndColor(),
                         android.graphics.Shader.TileMode.MIRROR));
             }
-            if  (dataSet.getRoundXRadius() != 0 && dataSet.getRoundYRadius() != 0) {
-                // zqr 2018-7-4日修改为支持圆角
-                RectF rectF=new RectF(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3]);
-                c.drawRoundRect(rectF, dataSet.getRoundXRadius(), dataSet.getRoundYRadius(), mRenderPaint);
-            } else {
-                c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
-                        buffer.buffer[j + 3], mRenderPaint);
+            // zqr 2018-7-4日修改为支持圆角
+            RectF rectF = new RectF(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3]);
+            //先画一个圆角矩形将图片显示为圆角
+            c.drawRoundRect(rectF, dataSet.getRoundRadius(), dataSet.getRoundRadius(), mRenderPaint);
+            //哪个角不是圆角我再把你用矩形画出来
+            if (dataSet.getRoundLeftTop() == 0) {
+                c.drawRect(0, 0, dataSet.getRoundRadius(), dataSet.getRoundRadius(), mRenderPaint);
             }
+//            if (dataSet.getRoundRightTop() == 0) {
+//                c.drawRect(rectF.right - dataSet.getRoundRadius(), 0, rectF.right, dataSet.getRoundRadius(), mRenderPaint);
+//            }
+//            if (dataSet.getRoundLeftBottom() == 0) {
+//                c.drawRect(0, rectF.bottom - dataSet.getRoundRadius(), dataSet.getRoundRadius(), rectF.bottom, mRenderPaint);
+//            }
+//            if (dataSet.getRoundRightBottom() == 0) {
+//                c.drawRect(rectF.right - dataSet.getRoundRadius(), rectF.bottom - dataSet.getRoundRadius(), rectF.right, rectF.bottom, mRenderPaint);
+//            }
+//          c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3], mRenderPaint);
             if (drawBorder) {
                 c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
                         buffer.buffer[j + 3], mBarBorderPaint);
